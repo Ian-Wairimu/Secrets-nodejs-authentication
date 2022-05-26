@@ -26,11 +26,8 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-// const encKey = process.env.ENC_32BYTE_BASE64_STRING;
-// const signKey = process.env.SIG_64BYTE_BASE64_STRING;
-const secret = 'This is my secret'
+const secret = process.env.SECRET_M;
 
-// userSchema.plugin(encrypt, {encryptionKey: encKey, signingKey: signKey})
 userSchema.plugin(encrypt, {secret: secret, encryptedFields: ['password']})
 const User = new mongoose.model('User', userSchema);
 
